@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عبود مصر | Abdo Egypt - كل شيء يبدأ من 100 جنيه</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Cairo',sans-serif; background:#0a0a0a; color:#fff; overflow-x:hidden; }
+body.en { font-family:'Poppins',sans-serif; direction:ltr; }
+
+:root { --gold:#d4af37; --dark:#0a0a0a; --red:#c0392b; }
+
+/* Navbar */
+nav { position:fixed; top:0; width:100%; padding:15px 5%; background:rgba(10,10,10,0.95); backdrop-filter:blur(10px); display:flex; justify-content:space-between; align-items:center; z-index:1000; border-bottom:2px solid var(--gold); }
+.logo { font-size:26px; font-weight:900; color:var(--gold); }
+.logo span { color:#fff; }
+nav ul { display:flex; gap:20px; list-style:none; align-items:center; }
+nav ul a { color:#fff; text-decoration:none; font-weight:700; transition:0.3s; font-size:15px; }
+nav ul a:hover { color:var(--gold); }
+.lang-btn { background:var(--gold); color:var(--dark); border:none; padding:8px 15px; border-radius:20px; font-weight:900; cursor:pointer; }
+.menu-btn { display:none; font-size:26px; cursor:pointer; color:var(--gold); background:none; border:none; }
+
+/* Hero */
+.hero { min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(10,10,10,0.85), rgba(192,57,43,0.5)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=70') center/cover fixed; text-align:center; padding:120px 20px 50px; }
+.hero-content h1 { font-size:clamp(40px,7vw,80px); font-weight:900; margin-bottom:20px; background:linear-gradient(90deg,var(--gold),#fff,var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-content p { font-size:clamp(17px,2.2vw,22px); margin-bottom:15px; color:#eee; }
+.badge { display:inline-block; background:var(--red); color:#fff; padding:10px 25px; border-radius:50px; font-weight:700; margin-bottom:25px; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
+.btn { display:inline-block; padding:15px 40px; background:var(--gold); color:var(--dark); font-weight:900; text-decoration:none; border-radius:50px; font-size:17px; transition:0.3s; border:none; cursor:pointer; }
+.btn:hover { transform:translateY(-3px); background:#fff; }
+.btn-outline { background:transparent; color:var(--gold); border:2px solid var(--gold); margin-inline-start:10px; }
+.btn-outline:hover { background:var(--gold); color:var(--dark); }
+
+.countdown-bar { background:var(--dark); border:2px solid var(--gold); border-radius:15px; padding:15px 25px; display:inline-flex; gap:15px; align-items:center; margin-top:25px; flex-wrap:wrap; justify-content:center; }
+.time-box { background:var(--red); color:#fff; padding:8px 12px; border-radius:8px; font-weight:900; font-size:20px; min-width:50px; text-align:center; }
+
+/* Sections */
+section { padding:80px 5%; }
+.section-title { text-align:center; font-size:clamp(28px,4vw,45px); margin-bottom:15px; color:var(--gold); font-weight:900; }
+.section-subtitle { text-align:center; color:#aaa; margin-bottom:50px; font-size:17px; max-width:600px; margin-inline:auto; }
+.section-title::after { content:''; display:block; width:80px; height:4px; background:var(--red); margin:15px auto; }
+
+/* Scroll Animation */
+.reveal { opacity:0; transform:translateY(30px); transition:all 0.8s ease-out; }
+.reveal.active { opacity:1; transform:translateY(0); }
+
+/* Services */
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; max-width:1200px; margin:0 auto; }
+.service-card { background:linear-gradient(145deg,#1a1a1a,#0a0a0a); border:2px solid transparent; border-radius:20px; overflow:hidden; transition:0.4s; }
+.service-card:hover { border-color:var(--gold); transform:translateY(-10px); }
+.service-img { width:100%; height:200px; object-fit:cover; transition:0.5s; }
+.service-card:hover .service-img { transform:scale(1.1); }
+.service-body { padding:25px; }
+.service-body h3 { color:var(--gold); font-size:22px; margin-bottom:12px; }
+.service-body p { color:#bbb; line-height:1.8; font-size:15px; }
+.service-price { display:inline-block; background:var(--red); color:#fff; padding:5px 15px; border-radius:20px; font-weight:700; margin-top:15px; font-size:14px; }
+
+/* Stats */
+.stats-section { background:var(--red); padding:60px 5%; }
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:30px; max-width:1000px; margin:0 auto; text-align:center; }
+.stat-item h3 { font-size:48px; font-weight:900; color:var(--gold); margin-bottom:10px; }
+.stat-item p { font-size:18px; color:#fff; font-weight:700; }
+
+/* Calculator */
+.calculator-box { max-width:700px; margin:0 auto; background:#1a1a1a; padding:40px; border-radius:20px; border:2px solid var(--gold); }
+.calc-group { margin-bottom:20px; }
+.calc-group label { display:block; color:var(--gold); font-weight:700; margin-bottom:10px; font-size:18px; }
+.calc-group select { width:100%; padding:12px; background:#0a0a0a; border:1px solid #333; border-radius:10px; color:#fff; font-family:inherit; font-size:16px; }
+.checkbox-group { display:flex; flex-direction:column; gap:10px; }
+.checkbox-item { display:flex; align-items:center; gap:10px; cursor:pointer; color:#ccc; }
+.checkbox-item input { width:20px; height:20px; accent-color:var(--gold); }
+.calc-total { text-align:center; margin-top:30px; padding:20px; background:var(--red); border-radius:15px; }
+.calc-total h3 { font-size:32px; color:var(--gold); margin-bottom:10px; }
+
+/* Testimonials */
+.testimonials-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; max-width:1200px; margin:0 auto; }
+.testimonial { background:#1a1a1a; padding:30px; border-radius:20px; border-top:3px solid var(--gold); position:relative; }
+.testimonial p { color:#ccc; line-height:1.8; margin-bottom:20px; font-style:italic; }
+.testimonial-author { display:flex; align-items:center; gap:15px; }
+.testimonial-author img { width:50px; height:50px; border-radius:50%; object-fit:cover; border:2px solid var(--gold); }
+.testimonial-author h5 { color:var(--gold); font-size:16px; }
+.testimonial-author span { color:#888; font-size:13px; }
+.stars { color:var(--gold); margin-top:5px; }
+
+/* FAQ */
+.faq-container { max-width:800px; margin:0 auto; }
+.faq-item { background:#1a1a1a; margin-bottom:15px; border-radius:10px; border:1px solid #333; overflow:hidden; }
+.faq-question { padding:20px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-weight:700; color:#fff; }
+.faq-answer { max-height:0; overflow:hidden; transition:max-height 0.4s ease-out; padding:0 20px; color:#bbb; line-height:1.8; }
+.faq-item.active .faq-answer { max-height:200px; padding:0 20px 20px; }
+.faq-item.active .faq-question { color:var(--gold); }
+.faq-icon { transition:0.3s; }
+.faq-item.active .faq-icon { transform:rotate(180deg); }
+
+/* Pricing */
+.pricing { background:linear-gradient(135deg,#0a0a0a,#1a1a1a); }
+.price-box { max-width:500px; margin:0 auto; text-align:center; background:linear-gradient(145deg,var(--red),#8b0000); padding:50px 30px; border-radius:25px; border:3px solid var(--gold); position:relative; overflow:hidden; }
+.price-box .from { font-size:22px; color:#fff; }
+.price-box .price { font-size:80px; font-weight:900; color:var(--gold); margin:15px 0; }
+.price-box ul { list-style:none; margin:25px 0; text-align:start; }
+.price-box ul li { padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.2); font-size:17px; }
+.price-box ul li i { color:var(--gold); margin-inline-end:10px; }
+
+/* Contact */
+.contact { background:#0a0a0a; }
+.contact-wrapper { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:30px; }
+.contact-info { background:linear-gradient(145deg,#1a1a1a,#0a0a0a); padding:40px; border-radius:20px; border:2px solid var(--gold); }
+.contact-info h3 { color:var(--gold); margin-bottom:20px; font-size:24px; }
+.contact-item { display:flex; align-items:center; gap:15px; margin-bottom:20px; }
+.contact-item i { width:45px; height:45px; background:var(--gold); color:var(--dark); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; }
+.contact-item div h5 { color:var(--gold); font-size:15px; }
+.contact-item div span { color:#bbb; font-size:14px; }
+.contact-form { background:#1a1a1a; padding:40px; border-radius:20px; border:2px solid var(--gold); }
+.contact-form input, .contact-form textarea { width:100%; padding:14px; margin-bottom:15px; background:#0a0a0a; border:1px solid #333; border-radius:10px; color:#fff; font-size:15px; font-family:inherit; }
+.contact-form button { width:100%; padding:14px; background:var(--gold); color:var(--dark); border:none; border-radius:10px; font-size:17px; font-weight:900; cursor:pointer; }
+
+/* Footer */
+footer { background:#000; padding:40px 5% 20px; text-align:center; border-top:2px solid var(--gold); }
+footer .social { margin:20px 0; }
+footer .social a { display:inline-flex; width:42px; height:42px; background:var(--gold); color:var(--dark); border-radius:50%; margin:0 5px; text-decoration:none; font-size:18px; align-items:center; justify-content:center; transition:0.3s; }
+footer .social a:hover { background:var(--red); color:#fff; }
+footer p { color:#888; margin:5px 0; font-size:14px; }
+
+/* Floating */
+.float-btn { position:fixed; bottom:25px; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:28px; text-decoration:none; z-index:999; transition:0.3s; border:none; cursor:pointer; }
+.whatsapp-float { left:25px; background:#25d366; animation:bounce 2s infinite; }
+body.en .whatsapp-float { left:auto; right:25px; }
+.back-to-top { right:25px; background:var(--gold); color:var(--dark); opacity:0; visibility:hidden; }
+body.en .back-to-top { right:auto; left:25px; }
+.back-to-top.show { opacity:1; visibility:visible; }
+@keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+
+/* Social Proof */
+.social-proof { position:fixed; bottom:100px; right:25px; background:#1a1a1a; border:1px solid var(--gold); border-radius:12px; padding:15px; display:flex; align-items:center; gap:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:998; transform:translateX(150%); transition:transform 0.5s ease; max-width:300px; }
+body.en .social-proof { right:auto; left:25px; transform:translateX(-150%); }
+.social-proof.show { transform:translateX(0); }
+.sp-img { width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid var(--gold); }
+.sp-text h5 { color:var(--gold); font-size:14px; margin-bottom:3px; }
+.sp-text p { color:#ccc; font-size:12px; }
+
+@media(max-width:768px) {
+  nav ul { display:none; position:absolute; top:100%; right:0; width:100%; background:var(--dark); flex-direction:column; padding:20px; }
+  body.en nav ul { right:auto; left:0; }
+  nav ul.active { display:flex; }
+  .menu-btn { display:block; }
+  .contact-wrapper { grid-template-columns:1fr; }
+  .social-proof { right:15px; max-width:260px; }
+  body.en .social-proof { right:auto; left:15px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Abdo<span>Egypt</span></div>
+  <ul id="navMenu">
+    <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+    <li><a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+    <li><a href="#calculator" data-ar="حاسبة الأسعار" data-en="Calculator">حاسبة الأسعار</a></li>
+    <li><a href="#testimonials" data-ar="آراء العملاء" data-en="Reviews">آراء العملاء</a></li>
+    <li><a href="#contact" data-ar="تواصل" data-en="Contact">تواصل</a></li>
+    <li><button class="lang-btn" onclick="toggleLang()">EN</button></li>
+  </ul>
+  <button class="menu-btn" onclick="document.getElementById('navMenu').classList.toggle('active')">☰</button>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="badge" data-ar="🔥 عروض حصرية - يبدأ من 100 جنيه فقط" data-en="🔥 Exclusive Offer - Starts from 100 EGP only">🔥 عروض حصرية - يبدأ من 100 جنيه فقط</span>
+    <h1 data-ar="عبود مصر" data-en="Abdo Egypt">عبود مصر</h1>
+    <p data-ar="كل شيء تحت سقف واحد: مطاعم • أكاديمية عطور • محلات متنوعة" data-en="Everything under one roof: Restaurants • Perfume Academy • Various Shops">كل شيء تحت سقف واحد: مطاعم • أكاديمية عطور • محلات متنوعة</p>
+    <p style="color:var(--gold);font-weight:700;" data-ar="✨ استضافة مدى الحياة مع كل مشروع ✨" data-en="✨ Lifetime Hosting with every project ✨">✨ استضافة مدى الحياة مع كل مشروع ✨</p>
+    
+    <div class="countdown-bar">
+      <span data-ar="ينتهي العرض خلال:" data-en="Offer ends in:">ينتهي العرض خلال:</span>
+      <div class="time-box" id="hours">23</div>:
+      <div class="time-box" id="minutes">59</div>:
+      <div class="time-box" id="seconds">59</div>
+    </div>
+
+    <div style="margin-top:25px;">
+      <a href="#contact" class="btn" data-ar="ابدأ مشروعك الآن" data-en="Start Your Project">ابدأ مشروعك الآن</a>
+      <a href="#calculator" class="btn btn-outline" data-ar="احسب سعر مشروعك" data-en="Calculate Price">احسب سعر مشروعك</a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <h2 class="section-title reveal" data-ar="خدماتنا المتميزة" data-en="Our Premium Services">خدماتنا المتميزة</h2>
+  <p class="section-subtitle reveal" data-ar="نقدم لك حلولاً متكاملة بأعلى جودة وأقل سعر" data-en="Complete solutions with highest quality and lowest price">نقدم لك حلولاً متكاملة بأعلى جودة وأقل سعر</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=70" alt="Restaurants" class="service-img">
+      <div class="service-body">
+        <h3 data-ar="🍔 جميع أنواع المطاعم" data-en="🍔 All Restaurants">🍔 جميع أنواع المطاعم</h3>
+        <p data-ar="تصميم مواقع وتطبيقات المطاعم بكل أنواعها" data-en="Design restaurant websites and apps">تصميم مواقع وتطبيقات المطاعم بكل أنواعها</p>
+        <span class="service-price" data-ar="يبدأ من 100 ج.م" data-en="From 100 EGP">يبدأ من 100 ج.م</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&q=70" alt="Perfumes" class="service-img">
+      <div class="service-body">
+        <h3 data-ar="🌸 أكاديمية العطور" data-en="🌸 Perfume Academy">🌸 أكاديمية العطور</h3>
+        <p data-ar="منصة تعليمية لدورات العطور والبخور" data-en="Educational platform for perfume courses">منصة تعليمية لدورات العطور والبخور</p>
+        <span class="service-price" data-ar="يبدأ من 100 ج.م" data-en="From 100 EGP">يبدأ من 100 ج.م</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=70" alt="Shops" class="service-img">
+      <div class="service-body">
+        <h3 data-ar="🛍️ محلات متنوعة" data-en="🛍️ Various Shops">🛍️ محلات متنوعة</h3>
+        <p data-ar="متاجر إلكترونية احترافية لكل المجالات" data-en="Professional online stores for all fields">متاجر إلكترونية احترافية لكل المجالات</p>
+        <span class="service-price" data-ar="يبدأ من 100 ج.م" data-en="From 100 EGP">يبدأ من 100 ج.م</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item reveal"><h3 class="counter" data-target="150">0</h3><p data-ar="مشروع منجز" data-en="Completed Projects">مشروع منجز</p></div>
+    <div class="stat-item reveal"><h3 class="counter" data-target="120">0</h3><p data-ar="عميل سعيد" data-en="Happy Clients">عميل سعيد</p></div>
+    <div class="stat-item reveal"><h3 class="counter" data-target="5">0</h3><p data-ar="سنوات خبرة" data-en="Years Experience">سنوات خبرة</p></div>
+    <div class="stat-item reveal"><h3 class="counter" data-target="24">0</h3><p data-ar="دعم فني/ساعة" data-en="Support Hours">دعم فني/ساعة</p></div>
+  </div>
+</section>
+
+<section id="calculator">
+  <h2 class="section-title reveal" data-ar="حاسبة الأسعار" data-en="Price Calculator">حاسبة الأسعار</h2>
+  <p class="section-subtitle reveal" data-ar="اختر خدماتك واعرف السعر فوراً" data-en="Choose your services and know the price instantly">اختر خدماتك واعرف السعر فوراً</p>
+  <div class="calculator-box reveal">
+    <div class="calc-group">
+      <label data-ar="نوع المشروع:" data-en="Project Type:">نوع المشروع:</label>
+      <select id="calcType" onchange="calculatePrice()">
+        <option value="100" data-ar="موقع تعريفي (100 ج.م)" data-en="Basic Site (100 EGP)">موقع تعريفي (100 ج.م)</option>
+        <option value="300" data-ar="موقع مطعم (300 ج.م)" data-en="Restaurant Site (300 EGP)">موقع مطعم (300 ج.م)</option>
+        <option value="500" data-ar="أكاديمية عطور (500 ج.م)" data-en="Perfume Academy (500 EGP)">أكاديمية عطور (500 ج.م)</option>
+        <option value="400" data-ar="متجر إلكتروني (400 ج.م)" data-en="E-commerce Store (400 EGP)">متجر إلكتروني (400 ج.م)</option>
+      </select>
+    </div>
+    <div class="calc-group">
+      <label data-ar="إضافات اختيارية:" data-en="Optional Add-ons:">إضافات اختيارية:</label>
+      <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox" value="150" class="calc-extra" onchange="calculatePrice()"> <span data-ar="تطبيق موبايل (+150 ج.م)" data-en="Mobile App (+150 EGP)">تطبيق موبايل (+150 ج.م)</span></label>
+        <label class="checkbox-item"><input type="checkbox" value="50" class="calc-extra" onchange="calculatePrice()"> <span data-ar="دومين .com (+50 ج.م)" data-en="Domain .com (+50 EGP)">دومين .com (+50 ج.م)</span></label>
+        <label class="checkbox-item"><input type="checkbox" value="100" class="calc-extra" onchange="calculatePrice()"> <span data-ar="تصميم لوجو (+100 ج.م)" data-en="Logo Design (+100 EGP)">تصميم لوجو (+100 ج.م)</span></label>
+      </div>
+    </div>
+    <div class="calc-total">
+      <p data-ar="السعر الإجمالي:" data-en="Total Price:">السعر الإجمالي:</p>
+      <h3 id="totalPrice">100 ج.م</h3>
+      <p style="font-size:14px; color:#fff; margin-top:10px;" data-ar="* يشمل استضافة مدى الحياة مجاناً" data-en="* Includes free lifetime hosting">* يشمل استضافة مدى الحياة مجاناً</p>
+      <a href="#contact" class="btn" style="margin-top:15px; display:inline-block;" data-ar="اطلب هذا العرض" data-en="Order Now">اطلب هذا العرض</a>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <h2 class="section-title reveal" data-ar="آراء عملائنا" data-en="Client Reviews">آراء عملائنا</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial reveal">
+      <p data-ar="خدمة ممتازة وسعر رائع! عملولي موقع مطعمي في يوم واحد والاستضافة مدى الحياة ميزة ما لقيتها عند حد تاني." data-en="Excellent service! Lifetime hosting is a feature I didn't find anywhere else.">خدمة ممتازة وسعر رائع! الاستضافة مدى الحياة ميزة ما لقيتها عند حد تاني.</p>
+      <div class="testimonial-author">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=70" alt="Client">
+        <div><h5 data-ar="أحمد محمد" data-en="Ahmed Mohamed">أحمد محمد</h5><span data-ar="صاحب مطعم" data-en="Restaurant Owner">صاحب مطعم</span><div class="stars">★★★★★</div></div>
+      </div>
+    </div>
+    <div class="testimonial reveal">
+      <p data-ar="أكاديمية العطور اللي عملولي إياها غيرت شغلي تماماً! تصميم فخم وسهل الاستخدام." data-en="The perfume academy changed my business! Luxurious design.">أكاديمية العطور اللي عملولي إياها غيرت شغلي تماماً!</p>
+      <div class="testimonial-author">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=70" alt="Client">
+        <div><h5 data-ar="سارة أحمد" data-en="Sarah Ahmed">سارة أحمد</h5><span data-ar="خبيرة عطور" data-en="Perfume Expert">خبيرة عطور</span><div class="stars">★★★★★</div></div>
+      </div>
+    </div>
+    <div class="testimonial reveal">
+      <p data-ar="أفضل تعامل في مصر! سريع، محترم، وشغله نظيف." data-en="Best dealing in Egypt! Fast, respectful, and clean work.">أفضل تعامل في مصر! سريع، محترم، وشغله نظيف.</p>
+      <div class="testimonial-author">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=70" alt="Client">
+        <div><h5 data-ar="محمد علي" data-en="Mohamed Ali">محمد علي</h5><span data-ar="صاحب محل" data-en="Shop Owner">صاحب محل</span><div class="stars">★★★★★</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <h2 class="section-title reveal" data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</h2>
+  <div class="faq-container">
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span data-ar="هل الاستضافة حقاً مدى الحياة؟" data-en="Is the hosting really lifetime?">هل الاستضافة حقاً مدى الحياة؟</span>
+        <i class="fas fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-answer"><p data-ar="نعم، 100%! بمجرد الدفع، نمنحك استضافة مجانية مدى الحياة بدون أي رسوم إضافية." data-en="Yes, 100%! Once you pay, we grant you free lifetime hosting with no extra fees.">نعم، 100%! بمجرد الدفع، نمنحك استضافة مجانية مدى الحياة بدون أي رسوم إضافية.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span data-ar="كيف أدفع 100 جنيه فقط؟" data-en="How to pay only 100 EGP?">كيف أدفع 100 جنيه فقط؟</span>
+        <i class="fas fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-answer"><p data-ar="يمكنك الدفع عبر فودافون كاش، إنستاباي، أو تحويل بنكي. تواصل معنا للتفاصيل." data-en="You can pay via Vodafone Cash, InstaPay, or bank transfer. Contact us for details.">يمكنك الدفع عبر فودافون كاش، إنستاباي، أو تحويل بنكي.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <span data-ar="كم يستغرق تسليم المشروع؟" data-en="How long to deliver?">كم يستغرق تسليم المشروع؟</span>
+        <i class="fas fa-chevron-down faq-icon"></i>
+      </div>
+      <div class="faq-answer"><p data-ar="المشاريع البسيطة خلال 24-48 ساعة. المشاريع الأكبر من 3-7 أيام." data-en="Simple projects in 24-48 hours. Larger projects in 3-7 days.">المشاريع البسيطة خلال 24-48 ساعة. المشاريع الأكبر من 3-7 أيام.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <h2 class="section-title reveal" data-ar="أسعار لا تُقاوم" data-en="Unbeatable Prices">أسعار لا تُقاوم</h2>
+  <div class="price-box reveal">
+    <div class="from" data-ar="يبدأ من" data-en="Starting from">يبدأ من</div>
+    <div class="price">100<span style="font-size:30px;" data-ar="ج.م" data-en="EGP">ج.م</span></div>
+    <ul>
+      <li><i class="fas fa-check"></i><span data-ar="تصميم احترافي" data-en="Professional design">تصميم احترافي</span></li>
+      <li><i class="fas fa-check"></i><span data-ar="استضافة مدى الحياة 🎁" data-en="Lifetime hosting 🎁">استضافة مدى الحياة 🎁</span></li>
+      <li><i class="fas fa-check"></i><span data-ar="دعم فني 24/7" data-en="24/7 support">دعم فني 24/7</span></li>
+      <li><i class="fas fa-check"></i><span data-ar="متوافق مع الموبايل" data-en="Mobile responsive">متوافق مع الموبايل</span></li>
+    </ul>
+    <a href="#contact" class="btn" data-ar="اطلب الآن" data-en="Order Now">اطلب الآن</a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 class="section-title reveal" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
+  <div class="contact-wrapper">
+    <div class="contact-info reveal">
+      <h3 data-ar="معلومات التواصل" data-en="Contact Info">معلومات التواصل</h3>
+      <div class="contact-item"><i class="fab fa-whatsapp"></i><div><h5 data-ar="واتساب" data-en="WhatsApp">واتساب</h5><span>01096467847</span></div></div>
+      <div class="contact-item"><i class="fas fa-phone"></i><div><h5 data-ar="اتصل بنا" data-en="Call Us">اتصل بنا</h5><span>01043406771</span></div></div>
+      <div class="contact-item"><i class="fas fa-envelope"></i><div><h5 data-ar="البريد" data-en="Email">البريد</h5><span>info@abdoegypt.com</span></div></div>
+      <div class="contact-item"><i class="fas fa-map-marker-alt"></i><div><h5 data-ar="الموقع" data-en="Location">الموقع</h5><span data-ar="مصر - جميع المحافظات" data-en="Egypt - All Governorates">مصر - جميع المحافظات</span></div></div>
+    </div>
+    <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('شكراً! سنتواصل معك قريباً 🌟');">
+      <input type="text" placeholder="الاسم الكامل" data-ar="الاسم الكامل" data-en="Full Name" required>
+      <input type="tel" placeholder="رقم الهاتف" data-ar="رقم الهاتف" data-en="Phone Number" required>
+      <textarea rows="5" placeholder="اكتب فكرة مشروعك..." data-ar="اكتب فكرة مشروعك..." data-en="Write your project idea..." required></textarea>
+      <button type="submit" data-ar="إرسال الطلب 🚀" data-en="Send Request 🚀">إرسال الطلب 🚀</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Abdo<span style="color:#fff;">Egypt</span></div>
+  <div class="social">
+    <a href="https://www.facebook.com/share/19tzyJAeeD/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.tiktok.com/@qpwoei8814?_r=1&_t=ZT-9AXwpIxxFte" target="_blank"><i class="fab fa-tiktok"></i></a>
+    <a href="https://wa.me/201096467847" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <p data-ar="© 2026 Abdo Egypt - جميع الحقوق محفوظة" data-en="© 2026 Abdo Egypt - All rights reserved">© 2026 Abdo Egypt - جميع الحقوق محفوظة</p>
+  <p style="color:var(--gold);" data-ar="✨ كل شيء يبدأ من 100 جنيه + استضافة مدى الحياة ✨" data-en="✨ Everything starts from 100 EGP + Lifetime Hosting ✨">✨ كل شيء يبدأ من 100 جنيه + استضافة مدى الحياة ✨</p>
+</footer>
+
+<a href="https://wa.me/201096467847" class="float-btn whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button class="float-btn back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+<div class="social-proof" id="socialProof">
+  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=70" class="sp-img" id="spImg" alt="User">
+  <div class="sp-text">
+    <h5 id="spName">أحمد من القاهرة</h5>
+    <p id="spAction">طلب موقع مطعم منذ 3 دقائق</p>
+  </div>
+</div>
+
+<script>
+// Language Toggle
+let currentLang = 'ar';
+function toggleLang() {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  document.body.classList.toggle('en', currentLang === 'en');
+  document.querySelector('.lang-btn').textContent = currentLang === 'ar' ? 'EN' : 'AR';
+  document.querySelectorAll('[data-ar]').forEach(el => { el.textContent = el.getAttribute('data-' + currentLang); });
+  document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(el => {
+    const val = el.getAttribute('data-' + currentLang); if (val) el.placeholder = val;
+  });
+  calculatePrice();
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({behavior:'smooth'});
+    document.getElementById('navMenu').classList.remove('active');
+  });
+});
+
+// Scroll Reveal
+const revealOnScroll = () => {
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// Back to Top
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backToTop');
+  if (window.scrollY > 300) btn.classList.add('show');
+  else btn.classList.remove('show');
+});
+
+// FAQ
+function toggleFaq(element) {
+  const item = element.parentElement;
+  const isActive = item.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+  if (!isActive) item.classList.add('active');
+}
+
+// Stats Counter
+let hasCounted = false;
+window.addEventListener('scroll', () => {
+  const statsSection = document.querySelector('.stats-section');
+  if (statsSection && statsSection.getBoundingClientRect().top < window.innerHeight && !hasCounted) {
+    hasCounted = true;
+    document.querySelectorAll('.counter').forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const increment = target / 50;
+      const updateCount = () => {
+        const count = +counter.innerText;
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCount, 30);
+        } else {
+          counter.innerText = target + (target === 24 ? '/7' : '+');
+        }
+      };
+      updateCount();
+    });
+  }
+});
+
+// Countdown
+let time = 24 * 60 * 60;
+setInterval(() => {
+  time--;
+  if (time < 0) time = 24 * 60 * 60;
+  const h = Math.floor(time / 3600);
+  const m = Math.floor((time % 3600) / 60);
+  const s = time % 60;
+  document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+  document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+  document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+}, 1000);
+
+// Calculator
+function calculatePrice() {
+  const base = parseInt(document.getElementById('calcType').value);
+  let extras = 0;
+  document.querySelectorAll('.calc-extra:checked').forEach(cb => extras += parseInt(cb.value));
+  const total = base + extras;
+  const currency = currentLang === 'ar' ? 'ج.م' : 'EGP';
+  document.getElementById('totalPrice').innerText = total + ' ' + currency;
+}
+
+// Social Proof
+const proofs = [
+  { name: "أحمد من القاهرة", action: "طلب موقع مطعم منذ 3 دقائق", img: "photo-1507003211169-0a1dd7228f2d" },
+  { name: "سارة من الإسكندرية", action: "حجزت أكاديمية عطور منذ 5 دقائق", img: "photo-1494790108377-be9c29b29330" },
+  { name: "محمد من الجيزة", action: "طلب متجر إلكتروني منذ 8 دقائق", img: "photo-1500648767791-00dcc994a43e" },
+  { name: "فاطمة من المنصورة", action: "اشترت باقة الاستضافة مدى الحياة", img: "photo-1438761681033-6461ffad8d80" }
+];
+let proofIndex = 0;
+const spElement = document.getElementById('socialProof');
+
+function showProof() {
+  const p = proofs[proofIndex];
+  document.getElementById('spName').innerText = p.name;
+  document.getElementById('spAction').innerText = p.action;
+  document.getElementById('spImg').src = 'https://images.unsplash.com/' + p.img + '?w=100&q=70';
+  spElement.classList.add('show');
+  setTimeout(() => spElement.classList.remove('show'), 4000);
+  proofIndex = (proofIndex + 1) % proofs.length;
+}
+setTimeout(showProof, 2000);
+setInterval(showProof, 7000);
+</script>
+</body>
+</html>
